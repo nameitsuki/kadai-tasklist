@@ -13,11 +13,14 @@ class TasksController < ApplicationController
     end
     
     def create
+        # フォームの投稿ボタンを押したら、createに飛んでくる
         @task=Task.new(task_params)
         
         if @task.save
             flash[:success]="タスクが正常に投稿されました"
+            # TasksControllerのshowアクションにリダイレクトしている
             redirect_to @task
+            # redirect_to "http://www.yahoo.co.jp/"
         else
             flash.now[:danger]="タスクが投稿されませんでした"
             render :new
